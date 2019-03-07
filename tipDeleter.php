@@ -1,6 +1,8 @@
 <a href="survivalTips.php">Home</a>
 <?php
-$id= $_POST['id'];
+$category= $_POST['category'];
+echo $category;
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -10,7 +12,7 @@ try {
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // sql to delete a record
-    $sql = "DELETE FROM MyTips WHERE id=$id";
+    $sql = "DELETE FROM mytips WHERE category='$category'";
     // use exec() because no results are returned
     $conn->exec($sql);
     echo "Record deleted successfully";

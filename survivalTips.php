@@ -7,7 +7,7 @@
 
 <br>
 <form action="./tipAdder.php" method="get" action ="<?php echo $_SERVER['PHP_SELF'];?>">
-      Enter Tip here: <input type="text" name="Tip">
+      Enter Tip here: <input type="text" name="tip">
                   <input type="submit">
                   
 </form>
@@ -19,18 +19,19 @@ $username = "root";
 $password = "";
 $dbname = "survivaltips";
 $item = $_POST;
+$T="category";
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT category FROM MyTips"); 
+    $stmt = $conn->prepare("SELECT category FROM mytips"); 
     $stmt->execute();
     $stmt ->setFetchMode(PDO::FETCH_ASSOC);
     $myTips = $stmt->fetchALL();
     foreach ($myTips as $T) {
         echo "<tr>";
-        echo "<td>" . $T["tip"] . "</td>";
-        echo "<td>" . "<form method='post' action='./tipDeleter.php'>" . "<input hidden name ='id' value=".$T['id'].">
-        <input type ='submit' value = 'DELETE'> </form>" . "</td>";
+        echo "<td>" . $T["category"] . "</td>";
+        echo "<td><form method='post' action='./tipDeleter.php'><input hidden name='category' value='" . $T['category'] . "'>";
+        echo "<input type ='submit' value = 'DELETE'> </form></td>";
         echo "</tr>";
     } 
 }

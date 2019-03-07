@@ -9,7 +9,7 @@ try {
     $conn = new PDO ("mysql:host=$servername;dbname=$dbname", $username, $password);
     
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "INSERT INTO MyTips (tip)
+    $sql = "INSERT INTO mytips (category)
     VALUES ('$tip')";
     $conn->exec($sql);
     echo  "record created successfully";
